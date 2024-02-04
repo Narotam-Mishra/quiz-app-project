@@ -222,6 +222,7 @@ let score = 0;
 function startQuiz(){
     currentQuestionIndex = 0;
     score = 0;
+    document.getElementById("current-score").innerText = score;
     nextButton.innerHTML = "Next"
     showQuestion();
 }
@@ -277,12 +278,14 @@ function selectAnswer(e){
     // Update the score immediately
     document.getElementById("current-score").innerText = score;
 
+    nextButton.style.display = "block";
+
     // Check if it's the last question
-    if (currentQuestionIndex === questions.length - 1) {
-        setTimeout(displayScore, 500); // Delay before displaying the score
-    } else {
-        nextButton.style.display = "block";
-    }
+    // if (currentQuestionIndex === questions.length - 1) {
+    //     setTimeout(displayScore, 100); // Delay before displaying the score
+    // } else {
+    //     nextButton.style.display = "block";
+    // }
 }
 
 function displayScore(){
@@ -308,6 +311,5 @@ nextButton.addEventListener("click", () => {
         startQuiz();
     }
 })
-
 
 startQuiz();
