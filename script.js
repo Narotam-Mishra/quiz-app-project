@@ -235,9 +235,6 @@ function showQuestion(){
     document.getElementById("current-question").innerText = questionNo;
     document.getElementById("total-questions").innerText = questions.length;
 
-    // Update current score
-    document.getElementById("current-score").innerText = score;
-    
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
     currentQuestion.answers.forEach(answer => {
@@ -276,7 +273,16 @@ function selectAnswer(e){
         }
         button.disabled = true;
     });
-    nextButton.style.display = "block";
+
+    // Update the score immediately
+    document.getElementById("current-score").innerText = score;
+
+    // Check if it's the last question
+    if (currentQuestionIndex === questions.length - 1) {
+        setTimeout(displayScore, 500); // Delay before displaying the score
+    } else {
+        nextButton.style.display = "block";
+    }
 }
 
 function displayScore(){
